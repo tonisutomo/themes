@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.primefaces.themes</groupId>
+		<artifactId>themes-project</artifactId>
+		<version>1.0.1</version>
+	</parent>
+	
+	<artifactId>sam</artifactId>
+	<packaging>jar</packaging>
+	<name>PrimeFaces Sam Theme</name>
+	
+	<build>
+		<finalName>primefaces-${project.artifactId}-${version}</finalName>
+        
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh-external</artifactId>
+                <version>1.0</version>
+            </extension>
+        </extensions>
+
+        <plugins>
+            <plugin>
+                <groupId>org.primefaces</groupId>
+                <artifactId>maven-jsf-plugin</artifactId>
+                <version>1.2</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <theme>true</theme>
+                        </configuration>
+                        <id>css-compressor</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>compress-css</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+	</build>
+
+
+    <distributionManagement>
+   		<repository>
+			<id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>sftp://primefaces.org/var/www/repository</url>
+            <uniqueVersion>false</uniqueVersion>
+		</repository>
+    </distributionManagement>
+	
+</project>
